@@ -20,8 +20,8 @@ function App(): JSX.Element {
       </View>
       <View style={styles.buttonContainer}>
         <View style={styles.imageButtonContainer}>
-          <SelectImageButton label="Choose photo" />
-          <SelectImageButton label="Take photo" />
+          <SelectImageButton label="Choose" theme="image"/>
+          <SelectImageButton label="Camera" theme="camera"/>
         </View>
         <ContinueButton label="Add stickers!" />
       </View>

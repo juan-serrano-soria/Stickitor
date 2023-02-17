@@ -30,9 +30,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-  },
-  buttonIcon: {
-    paddingRight: 8,
+    backgroundColor: '#3f454d',
   },
   buttonLabel: {
     color: '#fff',
