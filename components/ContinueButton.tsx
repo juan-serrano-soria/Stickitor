@@ -7,7 +7,7 @@ type ButtonProps = {
 const ContinueButton = (props: ButtonProps): JSX.Element => {
   return (
     <View style={styles.buttonContainer}>
-      <Pressable style={styles.button} onPress={() => Alert.alert('You pressed a button.')}>
+      <Pressable android_ripple={{color: '#25292e', borderless: true}} style={styles.button} onPress={() => Alert.alert('You pressed a button.')}>
         <Text style={styles.buttonLabel}>{props.label}</Text>
       </Pressable>
     </View>
@@ -17,7 +17,8 @@ const ContinueButton = (props: ButtonProps): JSX.Element => {
 const styles = StyleSheet.create({
   buttonContainer: {
     width: 320,
-    height: 68,
+    height: 64,
+    borderRadius: 10,
     marginHorizontal: 20,
     alignItems: 'center',
     justifyContent: 'center',
@@ -25,8 +26,8 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 10,
-    width: '100%',
-    height: '100%',
+    width: 320,
+    height: 64,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',

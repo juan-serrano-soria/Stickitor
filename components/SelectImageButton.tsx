@@ -12,7 +12,7 @@ const SelectImageButton = (props: ButtonProps): JSX.Element => {
   if (props.theme === "image") {
     return (
       <View style={styles.buttonContainer}>
-        <Pressable style={[styles.button, {borderColor: '#4daffa'}]} onPress={() => Alert.alert('You pressed a button.')}>
+        <Pressable android_ripple={{color: '#4daffa', borderless: true}} style={[styles.button, {borderColor: '#4daffa'}]} onPress={() => Alert.alert('You pressed a button.')}>
           <Image style={styles.icon} source={imageIcon}/>
           <Text style={styles.buttonLabel}>{props.label}</Text>
         </Pressable>
@@ -21,7 +21,7 @@ const SelectImageButton = (props: ButtonProps): JSX.Element => {
   }
   return (
     <View style={styles.buttonContainer}>
-      <Pressable style={styles.button} onPress={() => Alert.alert('You pressed a button.')}>
+      <Pressable android_ripple={{color: '#ffd33d', borderless: true}} style={styles.button} onPress={() => Alert.alert('You pressed a button.')}>
         <Image style={styles.icon} source={cameraIcon}/>
         <Text style={styles.buttonLabel}>{props.label}</Text>
       </Pressable>
@@ -31,8 +31,11 @@ const SelectImageButton = (props: ButtonProps): JSX.Element => {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    width: 160,
-    height: 68,
+    width: 155,
+    height: 64,
+    borderRadius: 10,
+    marginHorizontal: 5,
+    overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 3,
@@ -41,8 +44,8 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: '#ffd33d',
     borderRadius: 10,
-    width: '100%',
-    height: '100%',
+    width: 155,
+    height: 64,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
