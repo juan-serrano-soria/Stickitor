@@ -1,0 +1,43 @@
+import { StyleSheet, View, Pressable, Text, Alert } from 'react-native';
+
+type ButtonProps = {
+  label: String,
+}
+
+const SelectImageButton = (props: ButtonProps): JSX.Element => {
+  return (
+    <View style={styles.buttonContainer}>
+      <Pressable style={styles.button} onPress={() => Alert.alert('You pressed a button.')}>
+        <Text style={styles.buttonLabel}>{props.label}</Text>
+      </Pressable>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    width: 120,
+    height: 68,
+    marginHorizontal: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 3,
+  },
+  button: {
+    borderRadius: 10,
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  buttonIcon: {
+    paddingRight: 8,
+  },
+  buttonLabel: {
+    color: '#fff',
+    fontSize: 16,
+  },
+});
+
+export default SelectImageButton;

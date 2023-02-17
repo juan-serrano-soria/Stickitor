@@ -2,11 +2,12 @@ import React from 'react';
 import {
   StatusBar,
   StyleSheet,
-  Image,
   View,
 } from 'react-native';
 
 import ImageViewer from './components/ImageViewer';
+import ContinueButton from './components/ContinueButton';
+import SelectImageButton from './components/SelectImageButton';
 
 const PlaceholderImage = require('./assets/images/placeholder-image.png');
 
@@ -16,6 +17,13 @@ function App(): JSX.Element {
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <ImageViewer placeholderImageSource={PlaceholderImage} />
+      </View>
+      <View style={styles.buttonContainer}>
+        <View style={styles.imageButtonContainer}>
+          <SelectImageButton label="Choose photo" />
+          <SelectImageButton label="Take photo" />
+        </View>
+        <ContinueButton label="Add stickers!" />
       </View>
       <StatusBar
         barStyle={'dark-content'}
@@ -35,6 +43,14 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 58,
   },
+  buttonContainer: {
+    flex: 1 / 2,
+    alignItems: 'center',
+  },
+  imageButtonContainer: {
+    flex: 1 / 2,
+    flexDirection: 'row',
+  }
 });
 
 export default App;
