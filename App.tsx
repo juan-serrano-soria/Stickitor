@@ -28,8 +28,6 @@ function App(): JSX.Element {
     if (!result.didCancel) {
       setSelectedImage(result.assets![0].uri!);
       setShowEditor(true);
-    } else {
-      Alert.alert('Warning!', 'You did not select any image.');
     }
   };
 
@@ -42,8 +40,6 @@ function App(): JSX.Element {
     if (!result.didCancel) {
       setSelectedImage(result.assets![0].uri!);
       setShowEditor(true);
-    } else {
-      Alert.alert('Warning!', 'You did not take an image.');
     }
   };
 
