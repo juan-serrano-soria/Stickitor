@@ -10,6 +10,7 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import ImageViewer from './components/ImageViewer';
 import ContinueButton from './components/ContinueButton';
 import SelectImageButton from './components/SelectImageButton';
+import AddStickerButton from './components/AddStickerButton';
 
 const PlaceholderImage = require('./assets/images/placeholder-image.png');
 
@@ -42,7 +43,7 @@ function App(): JSX.Element {
       setSelectedImage(result.assets![0].uri!);
       setShowEditor(true);
     } else {
-      Alert.alert('Warning!', 'You did take an image.');
+      Alert.alert('Warning!', 'You did not take an image.');
     }
   };
 
@@ -52,8 +53,10 @@ function App(): JSX.Element {
         <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
       </View>
       {showEditor ? (
-          <View>
-            
+          <View style={styles.editorOtionsContainer}>
+            <View style={styles.editorOptionsRow}>
+              <AddStickerButton />
+            </View>
           </View>
         ) : (
         <View style={styles.buttonContainer}>
@@ -89,7 +92,15 @@ const styles = StyleSheet.create({
   imageButtonContainer: {
     flex: 1 / 2,
     flexDirection: 'row',
-  }
+  },
+  editorOtionsContainer: {
+    position: 'absolute',
+    bottom: 80,
+  },
+  editorOptionsRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
 });
 
 export default App;
