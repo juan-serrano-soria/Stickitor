@@ -16,6 +16,7 @@ const PlaceholderImage = require('./assets/images/placeholder-image.png');
 function App(): JSX.Element {
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [showEditor, setShowEditor] = useState(false);
 
   const pickImageAsync = async () => {
     let result = await launchImageLibrary({
@@ -25,6 +26,7 @@ function App(): JSX.Element {
 
     if (!result.didCancel) {
       setSelectedImage(result.assets![0].uri!);
+      setShowEditor(true);
     } else {
       Alert.alert('Warning!', 'You did not select any image.');
     }
@@ -38,6 +40,7 @@ function App(): JSX.Element {
 
     if (!result.didCancel) {
       setSelectedImage(result.assets![0].uri!);
+      setShowEditor(true);
     } else {
       Alert.alert('Warning!', 'You did take an image.');
     }
@@ -48,13 +51,19 @@ function App(): JSX.Element {
       <View style={styles.imageContainer}>
         <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
       </View>
-      <View style={styles.buttonContainer}>
-        <View style={styles.imageButtonContainer}>
-          <SelectImageButton label="Choose" theme="image" onPress={pickImageAsync}/>
-          <SelectImageButton label="Camera" theme="camera" onPress={takeImageAsync}/>
+      {showEditor ? (
+          <View>
+            
+          </View>
+        ) : (
+        <View style={styles.buttonContainer}>
+            <View style={styles.imageButtonContainer}>
+              <SelectImageButton label="Choose" theme="image" onPress={pickImageAsync}/>
+              <SelectImageButton label="Camera" theme="camera" onPress={takeImageAsync}/>
+            </View>
+            <ContinueButton label="Add stickers!" onPress={() => setShowEditor(true)} />
         </View>
-        <ContinueButton label="Add stickers!" />
-      </View>
+      )}
       <StatusBar
         barStyle={'dark-content'}
         backgroundColor={styles.container.backgroundColor}

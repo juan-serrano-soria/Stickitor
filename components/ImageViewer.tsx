@@ -2,7 +2,7 @@ import { StyleSheet, Image, ImageSourcePropType } from 'react-native';
 
 type ImageViewerProps = {
   placeholderImageSource: ImageSourcePropType,
-  selectedImage: string,
+  selectedImage: string | null,
 }
 
 const ImageViewer = (props: ImageViewerProps): JSX.Element => {

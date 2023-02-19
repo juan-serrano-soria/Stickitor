@@ -2,12 +2,13 @@ import { StyleSheet, View, Pressable, Text, Alert } from 'react-native';
 
 type ButtonProps = {
   label: String,
+  onPress: undefined,
 }
 
 const ContinueButton = (props: ButtonProps): JSX.Element => {
   return (
     <View style={styles.buttonContainer}>
-      <Pressable android_ripple={{color: '#25292e', borderless: true}} style={styles.button} onPress={() => Alert.alert('You pressed a button.')}>
+      <Pressable android_ripple={{color: '#25292e', borderless: true}} style={styles.button} onPress={props.onPress}>
         <Text style={styles.buttonLabel}>{props.label}</Text>
       </Pressable>
     </View>
