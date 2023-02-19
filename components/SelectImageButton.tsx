@@ -1,8 +1,9 @@
-import { StyleSheet, View, Pressable, Text, Alert, Image } from 'react-native';
+import { StyleSheet, View, Pressable, Text, Image } from 'react-native';
 
 type ButtonProps = {
   label: String,
   theme: String,
+  onPress: undefined,
 }
 
 const imageIcon = require('../assets/images/icons/image-solid.png');
@@ -12,7 +13,7 @@ const SelectImageButton = (props: ButtonProps): JSX.Element => {
   if (props.theme === "image") {
     return (
       <View style={styles.buttonContainer}>
-        <Pressable android_ripple={{color: '#4daffa', borderless: true}} style={[styles.button, {borderColor: '#4daffa'}]} onPress={() => Alert.alert('You pressed a button.')}>
+        <Pressable android_ripple={{color: '#4daffa', borderless: true}} style={[styles.button, {borderColor: '#4daffa'}]} onPress={props.onPress}>
           <Image style={styles.icon} source={imageIcon}/>
           <Text style={styles.buttonLabel}>{props.label}</Text>
         </Pressable>
@@ -21,7 +22,7 @@ const SelectImageButton = (props: ButtonProps): JSX.Element => {
   }
   return (
     <View style={styles.buttonContainer}>
-      <Pressable android_ripple={{color: '#ffd33d', borderless: true}} style={styles.button} onPress={() => Alert.alert('You pressed a button.')}>
+      <Pressable android_ripple={{color: '#ffd33d', borderless: true}} style={styles.button} onPress={props.onPress}>
         <Image style={styles.icon} source={cameraIcon}/>
         <Text style={styles.buttonLabel}>{props.label}</Text>
       </Pressable>
