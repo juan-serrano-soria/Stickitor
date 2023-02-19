@@ -15,7 +15,7 @@ const PlaceholderImage = require('./assets/images/placeholder-image.png');
 
 function App(): JSX.Element {
 
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const pickImageAsync = async () => {
     let result = await launchImageLibrary({
@@ -24,7 +24,7 @@ function App(): JSX.Element {
     });
 
     if (!result.didCancel) {
-      setSelectedImage(result.assets[0].uri);
+      setSelectedImage(result.assets![0].uri!);
     } else {
       Alert.alert('Warning!', 'You did not select any image.');
     }
@@ -37,7 +37,7 @@ function App(): JSX.Element {
     });
 
     if (!result.didCancel) {
-      setSelectedImage(result.assets[0].uri);
+      setSelectedImage(result.assets![0].uri!);
     } else {
       Alert.alert('Warning!', 'You did take an image.');
     }
