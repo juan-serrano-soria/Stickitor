@@ -1,11 +1,19 @@
-import { Image, Pressable, View, StyleSheet } from 'react-native';
+import { Alert, Image, Pressable, View, StyleSheet } from 'react-native';
 
 const addIcon = require('../assets/images/icons/plus-solid.png');
 
-const AddStickerButton = (): JSX.Element => {
+type AddStickerButtonProps = {
+  onLongPress: string,
+};
+
+const AddStickerButton = (props: AddStickerButtonProps): JSX.Element => {
   return (
     <View style={styles.buttonContainer}>
-      <Pressable style={styles.button} android_ripple={{color: '#4daffa', borderless: true}}>
+      <Pressable
+        style={styles.button}
+        android_ripple={{color: '#4daffa', borderless: true}}
+        onLongPress={() => {Alert.alert(props.onLongPress)}}
+      >
         <Image style={styles.image} source={addIcon} />
       </Pressable>
     </View>

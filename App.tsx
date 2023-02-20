@@ -45,6 +45,14 @@ function App(): JSX.Element {
     }
   };
 
+  const onReset = () => {
+    setShowEditor(false);
+  };
+
+  const onSaveImage = () => {
+    
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -53,9 +61,9 @@ function App(): JSX.Element {
       {showEditor ? (
           <View style={styles.editorOtionsContainer}>
             <View style={styles.editorOptionsRow}>
-              <IconButton icon={ResetIcon}/>
-              <AddStickerButton />
-              <IconButton icon={SaveIcon}/>
+              <IconButton icon={ResetIcon} onPress={onReset} onLongPress={'reset'}/>
+              <AddStickerButton onLongPress={'add sticker'}/>
+              <IconButton icon={SaveIcon} onPress={onSaveImage} onLongPress={'save image'}/>
             </View>
           </View>
         ) : (

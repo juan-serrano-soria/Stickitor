@@ -1,13 +1,20 @@
-import { Image, ImageSourcePropType, Pressable, StyleSheet, View } from 'react-native';
+import { Alert, Image, ImageSourcePropType, Pressable, StyleSheet, View } from 'react-native';
 
 type IconButtonProps = {
   icon: ImageSourcePropType,
+  onPress: undefined,
+  onLongPress: string,
 };
 
 const IconButton = (props: IconButtonProps): JSX.Element => {
   return(
     <View style={styles.buttonContainer}>
-      <Pressable style={styles.button}  android_ripple={{color: '#7c7e81', borderless: true}}>
+      <Pressable
+        style={styles.button}
+        android_ripple={{color: '#7c7e81', borderless: true}}
+        onPress={props.onPress}
+        onLongPress={() => {Alert.alert(props.onLongPress)}}
+      >
         <Image source={props.icon} style={styles.image} />
       </Pressable>
     </View>
