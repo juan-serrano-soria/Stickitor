@@ -2,7 +2,7 @@ import { Image, Pressable, View, StyleSheet } from 'react-native';
 
 const addIcon = require('../assets/images/icons/plus-solid.png');
 
-const AddStickerButton  = (): JSX.Element => {
+const AddStickerButton = (): JSX.Element => {
   return (
     <View style={styles.buttonContainer}>
       <Pressable style={styles.button} android_ripple={{color: '#4daffa', borderless: true}}>
@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     borderColor: '#4daffa',
     borderRadius: 42,
     padding: 3,
+    marginHorizontal: 30,
   },
   button: {
     flex: 1,
@@ -27,8 +28,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     alignSelf: 'center',
   },
 });

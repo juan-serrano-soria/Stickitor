@@ -1,7 +1,7 @@
 import { StyleSheet, View, Pressable, Text, Alert } from 'react-native';
 
 type ButtonProps = {
-  label: String,
+  label: string,
   onPress: undefined,
 }
 

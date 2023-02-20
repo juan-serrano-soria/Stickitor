@@ -3,7 +3,6 @@ import {
   StatusBar,
   StyleSheet,
   View,
-  Alert,
 } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
@@ -11,8 +10,11 @@ import ImageViewer from './components/ImageViewer';
 import ContinueButton from './components/ContinueButton';
 import SelectImageButton from './components/SelectImageButton';
 import AddStickerButton from './components/AddStickerButton';
+import IconButton from './components/IconButtons';
 
 const PlaceholderImage = require('./assets/images/placeholder-image.png');
+const ResetIcon = require('./assets/images/icons/rotate-right-solid.png');
+const SaveIcon = require('./assets/images/icons/arrow-down-solid.png');
 
 function App(): JSX.Element {
 
@@ -51,7 +53,9 @@ function App(): JSX.Element {
       {showEditor ? (
           <View style={styles.editorOtionsContainer}>
             <View style={styles.editorOptionsRow}>
+              <IconButton icon={ResetIcon}/>
               <AddStickerButton />
+              <IconButton icon={SaveIcon}/>
             </View>
           </View>
         ) : (
