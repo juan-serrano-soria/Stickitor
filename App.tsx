@@ -11,6 +11,7 @@ import ContinueButton from './components/ContinueButton';
 import SelectImageButton from './components/SelectImageButton';
 import AddStickerButton from './components/AddStickerButton';
 import IconButton from './components/IconButtons';
+import StickerPicker from './components/StickerPicker';
 
 const PlaceholderImage = require('./assets/images/placeholder-image.png');
 const ResetIcon = require('./assets/images/icons/rotate-right-solid.png');
@@ -20,6 +21,7 @@ function App(): JSX.Element {
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showEditor, setShowEditor] = useState(false);
+  const [showStickerPicker, setShowStickerPicker] = useState(false);
 
   const pickImageAsync = async () => {
     let result = await launchImageLibrary({
@@ -50,8 +52,16 @@ function App(): JSX.Element {
   };
 
   const onSaveImage = () => {
-    
+
   };
+
+  const onAddSticker = () => {
+    setShowStickerPicker(true);
+  }
+
+  const onCloseStickerPicker = () => {
+    setShowStickerPicker(false);
+  }
 
   return (
     <View style={styles.container}>
@@ -62,7 +72,7 @@ function App(): JSX.Element {
           <View style={styles.editorOtionsContainer}>
             <View style={styles.editorOptionsRow}>
               <IconButton icon={ResetIcon} onPress={onReset} onLongPress={'reset'}/>
-              <AddStickerButton onLongPress={'add sticker'}/>
+              <AddStickerButton onPress={onAddSticker} onLongPress={'add sticker'}/>
               <IconButton icon={SaveIcon} onPress={onSaveImage} onLongPress={'save image'}/>
             </View>
           </View>
@@ -75,10 +85,12 @@ function App(): JSX.Element {
             <ContinueButton label="Add stickers!" onPress={() => setShowEditor(true)} />
         </View>
       )}
+      <StickerPicker isVisible={showStickerPicker} onClose={onCloseStickerPicker}>
+      </StickerPicker>
       <StatusBar
         barStyle={'dark-content'}
         backgroundColor={styles.container.backgroundColor}
-      />
+      />  
     </View>
   );
 }
