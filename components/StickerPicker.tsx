@@ -3,6 +3,7 @@ import { Modal, Image, View, Text, Pressable, StyleSheet } from 'react-native';
 type StickerPickerProps = {
   isVisible: boolean,
   onClose: undefined,
+  children: JSX.Element,
 }
 
 const closeIcon = require('../assets/images/icons/xmark-solid.png');
@@ -17,6 +18,7 @@ const StickerPicker = (props: StickerPickerProps): JSX.Element => {
             <Image source={closeIcon} style={styles.image} />
           </Pressable>
         </View>
+        {props.children}
       </View>
     </Modal>
   );

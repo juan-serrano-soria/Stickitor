@@ -12,16 +12,26 @@ import SelectImageButton from './components/SelectImageButton';
 import AddStickerButton from './components/AddStickerButton';
 import IconButton from './components/IconButtons';
 import StickerPicker from './components/StickerPicker';
+import StickerList from './components/StickerList';
 
 const PlaceholderImage = require('./assets/images/placeholder-image.png');
 const ResetIcon = require('./assets/images/icons/rotate-right-solid.png');
 const SaveIcon = require('./assets/images/icons/arrow-down-solid.png');
+const Stickers = [
+  require('./assets/images/stickers/emoji/emoji1.png'),
+  require('./assets/images/stickers/emoji/emoji2.png'),
+  require('./assets/images/stickers/emoji/emoji3.png'),
+  require('./assets/images/stickers/emoji/emoji4.png'),
+  require('./assets/images/stickers/emoji/emoji5.png'),
+  require('./assets/images/stickers/emoji/emoji6.png'),
+];
 
 function App(): JSX.Element {
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showEditor, setShowEditor] = useState(false);
   const [showStickerPicker, setShowStickerPicker] = useState(false);
+  const [pickedSticker, setPickedSticker] = useState<string | null>(null);
 
   const pickImageAsync = async () => {
     let result = await launchImageLibrary({
@@ -86,6 +96,7 @@ function App(): JSX.Element {
         </View>
       )}
       <StickerPicker isVisible={showStickerPicker} onClose={onCloseStickerPicker}>
+        <StickerList onSelect={setPickedSticker} onClose={onCloseStickerPicker} stickers={Stickers}/>
       </StickerPicker>
       <StatusBar
         barStyle={'dark-content'}
