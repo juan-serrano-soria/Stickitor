@@ -13,6 +13,7 @@ import AddStickerButton from './components/AddStickerButton';
 import IconButton from './components/IconButtons';
 import StickerPicker from './components/StickerPicker';
 import StickerList from './components/StickerList';
+import Sticker from './components/Sticker';
 
 const PlaceholderImage = require('./assets/images/placeholder-image.png');
 const ResetIcon = require('./assets/images/icons/rotate-right-solid.png');
@@ -77,6 +78,7 @@ function App(): JSX.Element {
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
+        {pickedSticker !== null ? <Sticker imageWidth={40} imageHeight={40} stickerSource={pickedSticker} /> : null}
       </View>
       {showEditor ? (
           <View style={styles.editorOtionsContainer}>
