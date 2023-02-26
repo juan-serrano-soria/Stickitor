@@ -8,7 +8,7 @@ type StickerProps = {
 
 const Sticker = (props: StickerProps): JSX.Element => {
   return (
-    <View style={{ top: -350 }}>
+    <View style={{ top: -250, left: 140, }}>
       <Image
         source={props.stickerSource}
         resizeMode="contain"
