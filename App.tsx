@@ -5,6 +5,7 @@ import {
   View,
 } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import ImageViewer from './components/ImageViewer';
 import ContinueButton from './components/ContinueButton';
@@ -75,7 +76,7 @@ function App(): JSX.Element {
   }
 
   return (
-    <View style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
       <View style={styles.imageContainer}>
         <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
         {pickedSticker !== null ? <Sticker imageWidth={40} imageHeight={40} stickerSource={pickedSticker} /> : null}
@@ -104,7 +105,7 @@ function App(): JSX.Element {
         barStyle={'dark-content'}
         backgroundColor={styles.container.backgroundColor}
       />  
-    </View>
+    </GestureHandlerRootView>
   );
 }
 
