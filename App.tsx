@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   StatusBar,
   StyleSheet,
   View,
+  Alert,
 } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { captureRef } from 'react-native-view-shot';
+import { CameraRoll } from '@react-native-camera-roll/camera-roll';
 
 import ImageViewer from './components/ImageViewer';
 import ContinueButton from './components/ContinueButton';
@@ -35,6 +38,8 @@ function App(): JSX.Element {
   const [showStickerPicker, setShowStickerPicker] = useState(false);
   const [pickedSticker, setPickedSticker] = useState<string | null>(null);
 
+  const imageRef = useRef();
+
   const pickImageAsync = async () => {
     let result = await launchImageLibrary({
       mediaType: 'photo',
@@ -63,8 +68,20 @@ function App(): JSX.Element {
     setShowEditor(false);
   };
 
-  const onSaveImage = () => {
+  const onSaveImageAsync = async () => {
+    try {
+      const localUri = await captureRef(imageRef, {
+        height: 440,
+        quality: 1,
+      });
 
+      await CameraRoll.save(localUri);
+      if (localUri) {
+        Alert.alert("Saved!");
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const onAddSticker = () => {
@@ -78,15 +95,17 @@ function App(): JSX.Element {
   return (
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.imageContainer}>
-        <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
-        {pickedSticker !== null ? <Sticker imageWidth={40} imageHeight={40} stickerSource={pickedSticker} /> : null}
+        <View ref={imageRef} collapsable={false}>
+          <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
+          {pickedSticker !== null ? <Sticker imageWidth={40} imageHeight={40} stickerSource={pickedSticker} /> : null}
+        </View>
       </View>
       {showEditor ? (
           <View style={styles.editorOtionsContainer}>
             <View style={styles.editorOptionsRow}>
               <IconButton icon={ResetIcon} onPress={onReset} onLongPress={'reset'}/>
               <AddStickerButton onPress={onAddSticker} onLongPress={'add sticker'}/>
-              <IconButton icon={SaveIcon} onPress={onSaveImage} onLongPress={'save image'}/>
+              <IconButton icon={SaveIcon} onPress={onSaveImageAsync} onLongPress={'save image'}/>
             </View>
           </View>
         ) : (
