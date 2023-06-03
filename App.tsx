@@ -36,7 +36,7 @@ function App(): JSX.Element {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showEditor, setShowEditor] = useState(false);
   const [showStickerPicker, setShowStickerPicker] = useState(false);
-  const [pickedSticker, setPickedSticker] = useState<any[]>([]);
+  const [pickedSticker, setPickedSticker] = useState<string | null>(null);
 
   const imageRef = useRef();
 
@@ -66,7 +66,6 @@ function App(): JSX.Element {
 
   const onReset = () => {
     setShowEditor(false);
-    setPickedSticker([]);
   };
 
   const onSaveImageAsync = async () => {
@@ -93,17 +92,12 @@ function App(): JSX.Element {
     setShowStickerPicker(false);
   }
 
-  const addNewSticker = (sticker) => {
-    setPickedSticker(prev => [...prev, sticker])
-    console.log(sticker)
-  }
-
   return (
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.imageContainer}>
         <View ref={imageRef} collapsable={false}>
           <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
-          {pickedSticker.map((sticker) => (<Sticker imageWidth={40} imageHeight={40} stickerSource={sticker} />))}
+          {pickedSticker !== null ? <Sticker imageWidth={40} imageHeight={40} stickerSource={pickedSticker} /> : null}
         </View>
       </View>
       {showEditor ? (
@@ -124,7 +118,7 @@ function App(): JSX.Element {
         </View>
       )}
       <StickerPicker isVisible={showStickerPicker} onClose={onCloseStickerPicker}>
-        <StickerList onSelect={addNewSticker} onClose={onCloseStickerPicker} stickers={Stickers}/>
+        <StickerList onSelect={setPickedSticker} onClose={onCloseStickerPicker} stickers={Stickers}/>
       </StickerPicker>
       <StatusBar
         barStyle={'dark-content'}
