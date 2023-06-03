@@ -95,6 +95,7 @@ function App(): JSX.Element {
 
   const addNewSticker = (sticker) => {
     setPickedSticker(prev => [...prev, sticker])
+    console.log(sticker)
   }
 
   return (
